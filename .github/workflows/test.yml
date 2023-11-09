@@ -3,7 +3,11 @@ run-name: ${{ github.actor }} is testing out
 on: [push]
 jobs:
   Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.8"]
     steps:
       - run: pip install numpy==1.19
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
